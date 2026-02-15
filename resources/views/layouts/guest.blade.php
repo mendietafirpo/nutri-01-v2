@@ -13,14 +13,18 @@
             <!--btn social media-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css">
+
         
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        
+        <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/trix.css') }}" rel="stylesheet">
+
         
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+        <script src="{{ asset('js/trix.umd.min.js') }}"></script>
+        
     </head>
     <body class="bg-gray-100">
     <!-- Page Heading -->

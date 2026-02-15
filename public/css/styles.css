@@ -1,0 +1,16 @@
+[x-cloak] {
+    display: none !important;
+}
+
+@media (min-width: 1024px) {
+    .lg\:rounded-r-md {
+      border-radius: 0 !important;
+      border-top-right-radius: 0.375rem !important;
+      border-bottom-right-radius: 0.375rem !important;
+    }
+    .lg\:rounded-l-md {
+      border-radius: 0 !important;
+      border-top-left-radius: 0.375rem !important;
+      border-bottom-left-radius: 0.375rem !important;
+    }
+  }

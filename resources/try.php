@@ -84,3 +84,22 @@
                     @endauth
                 </div>
             @endif
+
+    Route::post('update-color', function (Request $request) {
+        $filePath = storage_path('app/designs_color.json');
+    
+        $color = $request->input('color');
+        $key = $request->input('key');
+
+        // Leer el contenido actual del archivo JSON si existe
+        $data = file_exists($filePath) ? json_decode(file_get_contents($filePath), true) : [];
+    
+        // Asegurar que $data es un array y actualizar solo la clave correspondiente
+        $data[$key] = $color;
+    
+        // Guardar el JSON actualizado
+        file_put_contents($filePath, json_encode($data, JSON_PRETTY_PRINT));
+    
+        return response()->json(['success' => true, 'message' => 'Color guardado correctamente']);
+    })->name('update.color');
+    

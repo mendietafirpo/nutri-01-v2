@@ -35,3 +35,17 @@
 >> php artisan install:api
 
 >> php artisan tinker
+
+>> php artisan storage:link
+
+>> php artisan key:generate
+
+>> composer install
+
+>> mkdir -p storage/app/public/uploads
+
+>> chmod -R 775 storage/app/public
+
+>> chmod -R 777 storage
+
+>> netstat -ano | findstr :3306

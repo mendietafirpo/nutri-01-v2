@@ -11,18 +11,18 @@
                 &nbsp
             </div>
             <div>
-                <a href="{{ url('/contact') }}" class="text-sm text-gray-400 hover:text-white">Contacto</a>
+                <a href="{{ url('/contacts') }}" class="text-sm text-gray-400 hover:text-white">Contacto</a>
                 &nbsp
             </div>
         </div>
         <div class="col-start-2 col-span-2 row-span-3 row-start-1 text-center mr-12 mt-6">
             <p class="text-sm">Información del Sitio</p>
             <ul>
-            <li><a href="{{ url('/about') }}" class="text-gray-400 hover:text-white">Sobre Nosotros</a></li>
-            <li><a href="{{ url('/team') }}" class="text-gray-400 hover:text-white">Equipo</a></li>
+            <li><a href="{{ url('/company') }}" class="text-gray-400 hover:text-white">Sobre Nosotros</a></li>
+            <li><a href="{{ url('/teams') }}" class="text-gray-400 hover:text-white">Equipo</a></li>
             </ul>
         </div>
-        <div class="col-start-3 row-start-4 col-span-2 text-right mr-12">
+        <div class="col-start-3 row-start-4 col-span-2 text-right mr-4">
             &nbsp
             <a class="btn btn-link" href="https://www.facebook.com/NAME">
             <i class="fa fa-facebook" aria-hidden="true"></i>

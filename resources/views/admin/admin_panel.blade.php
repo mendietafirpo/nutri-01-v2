@@ -2,28 +2,35 @@
 @section('content')
 <section class="flex h-screen">
     <!-- Sidebar -->
-    <aside id="sidebar" class="w-48 bg-white shadow-md h-full">
-        <div class="p-4 text-lg font-bold">Panel</div>
+    <aside x-data="{ expand: true }" id="sidebar" class="w-48 bg-white shadow-md h-full">
+        <div x-show="expand" class="p-4 text-lg font-bold">Panel</div>
         <nav>
             <ul>
                 <li>
-                    <button class="p-4" onclick="saveView(this)" data-valor="1">👥 Usuarios</button>
+                    <button class="p-2" onclick="saveView(this)" data-valor="1">
+                        <span x-text="expand ? '👥 Usuarios' : '👥'"></span>
+                    </button>
                 </li>
                 <li>
-                    <button class="p-4" onclick="saveView(this)" data-valor="2">📊 Traces</button>
+                    <button class="p-2" onclick="saveView(this)" data-valor="2">
+                        <span x-text="expand ? '📊 Traces' : '📊'"></span>
+                    </button>
                 </li>
-                <li>
+                <!-- <li>
                     <button class="p-4" onclick="saveView(this)" data-valor="3">⚙️ Configuración</button>
                 </li>
                 <li>
                     <button class="p-4" onclick="saveView(this)" data-valor="4">📄 Reportes</button>
-                </li>
+                </li> -->
             </ul>
         </nav>
+        <div class="text-right justify-center mt-8">
+            <button @click="expand = !expand" id="toggleSidebar" class="bg-slate-100 shadow-md font-bold text-blue-600 px-2 py-2 rounded">
+                <span x-text="expand ? '<<' : '>>'"></span> 
+            </button>
+        </div>
     </aside>
-    <button id="toggleSidebar" class="bg-white text-back px-2 py-2 rounded">
-        <<
-    </button>
+
     <!-- Contenido Principal -->
     <div class="flex-1 p-6">
         @if (!empty(session('viewSection')) && session('viewSection') == 1)
@@ -37,6 +44,8 @@
 </section>
 @endsection
 </x-app-layout>
+
+
 <script>
     function saveView(button) {
         let valor = button.getAttribute('data-valor');
@@ -62,7 +71,7 @@
     const toggleButton = document.getElementById("toggleSidebar");
     
     toggleButton.addEventListener("click", () => {
-        sidebar.classList.toggle("hidden");
-        sidebar.classList.toggle("pl-2");
+        sidebar.classList.toggle("w-8");
+        sidebar.classList.toggle("mt-8");
     });
 </script>

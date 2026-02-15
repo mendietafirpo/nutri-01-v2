@@ -1,8 +1,7 @@
 
-function saveColor(button) {
+function saveDesign(button) {
     let key = button.dataset.key;
-    let color = document.getElementById(key).value;
-    alert(`Color: ${color}, key: ${key}`);
+    let value = document.getElementById(key).value;
     
     fetch('/home.updateddesign', {
         method: 'POST',
@@ -10,13 +9,14 @@ function saveColor(button) {
             'Content-Type': 'application/json',
             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
         },
-        body: JSON.stringify({ key: key, color: color})
+        body: JSON.stringify({ key: key, value: value})
     })
     
     .then(response => response.json())
     .then(data => {
+        alert(key + value);
         if (data.success) {
-            alert("Color guardado correctamente!!.");
+            alert("Diseño guardado correctamente.");
         } else {
             alert("Error al guardar el color.");
         }
@@ -24,3 +24,14 @@ function saveColor(button) {
     })
     .catch(error => console.error("Error:", error));
 }
+
+// document.getElementById('image-input').addEventListener('change', function(event) {
+//     let reader = new FileReader();
+//     reader.onload = function(){
+//         let preview = document.getElementById('preview');
+//         preview.src = reader.result;
+//         preview.classList.remove('hidden');
+//     };
+//     reader.readAsDataURL(event.target.files[0]);
+// });
+

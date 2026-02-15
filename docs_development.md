@@ -14,7 +14,6 @@ Sitio web destinado a
 
 ## instalaciones
 > composer global require laravel/installer
-> composer global require laravel/installer
 > cd nutri-01-v2
 > npm install && npm run build
 > composer run dev
