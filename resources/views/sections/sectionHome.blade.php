@@ -1,6 +1,6 @@
 @section('content')
-<body class="mx-auto px-2 w-screen" style="background-color: {{ $colors['home_color_1'] }};">
-    <section class="grid grid-cols-1 sm:grid-cols-2 gap-2 shadow-2xl w-full rounded-lg py-8 px-2 m-8" style="background-color: {{ $colors['home_color_1'] }};">
+<body class="max-w-7xl px-2 w-screen" style="background-color: {{ $colors['home_color_1'] }};">
+    <section class="grid grid-cols-1 sm:grid-cols-2 gap-2 shadow-2xl w-full rounded-lg py-8 px-2 m-4" style="background-color: {{ $colors['home_color_1'] }};">
         <!-- Video Section column 1-->
         <aside class="lg:rounded-l-md rounded-md bg-slate-600 justify-items-center shadow-2xl">
             @php

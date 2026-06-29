@@ -18,17 +18,17 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'id',
-        'name',
+        'lastName',
+        'firstName',
         'email',
-        'password',
         'role',
         'cellPhone',
         'addrLine1',
         'addrLine2',
         'city',
         'country',
-        'zipCode'
+        'zipCode',
+        'password'
     ];
 
     /**
@@ -46,16 +46,28 @@ class User extends Authenticatable
         return $this->role === 1;
     }
 
+    // Le dices a Laravel: "Oye, mi columna de actualización se llama 'updatedOn'"
+    const UPDATED_AT = 'updatedOn';
+    
+    // Si tampoco existe 'created_at' y se llama diferente (ej: 'createdOn'), lo pones aquí:
+    const CREATED_AT = 'createdOn';
+    
     /**
      * Get the attributes that should be cast.
      *
      * @return array<string, string>
      */
-    protected function casts(): array
+        protected function casts(): array
+        {
+            return [
+                'email_verified_at' => 'datetime',
+                'password' => 'hashed',
+            ];
+        }
+
+
+    public function devices()
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
-    }
+        return $this->belongsToMany(Device::class, 'device_user', 'userId', 'devId');
+     }
 }

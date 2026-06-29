@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use App\Models\Contact;
 
 class ContactController extends Controller
 {
@@ -33,4 +34,24 @@ class ContactController extends Controller
         return view('contacts');
 
     }
+
+    
+    public function store(Request $request)
+    
+    {
+
+            $contact = Contact::create($request->all());
+
+            return redirect()->route('contacts')
+            ->with('success','Su mensaje fue enviado correctamente. Gracias '.$request->name.' por contactarnos, pronto responderemos a vuestra demanda');
+
+    }
+
+    public function destroy($id)
+    {
+        Contact::findOrFail($id)->delete();
+        return redirect()->back();
+    }
+
+
 }

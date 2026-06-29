@@ -18,15 +18,16 @@ class RoleMiddleware
      * @param  int  $role
      * @return mixed
      */
-    public function handle(Request $request, Closure $next, $role)
+    public function handle(Request $request, Closure $next, ...$roles)
     {
-        // Asegúrate de que el usuario esté autenticado
+        // 1. Verificar autenticación
         if (!Auth::check()) {
             return redirect('/');
         }
         
-        // Verifica el rol
-        if (Auth::user()->role !== (int) $role) {
+        // 2. Verificar si el rol del usuario está en la lista permitida
+        // El operador ...$roles convierte los parámetros en un array
+        if (!in_array(Auth::user()->role, $roles)) {
             return redirect('/');
         }
 

@@ -5,14 +5,14 @@
             <div class="flex text-xl">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('welcome') }}">
                         <img class="block h-8 w-auto fill-current rounded-full" src="{{ asset('/logo.png') }}" alt="nutri">
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ url('/') }}">
+                    <x-nav-link :href="route('welcome')" :active="request()->routeIs('welcome')">
                         
                         {{ __('Inicio') }}
                     </x-nav-link>
@@ -44,11 +44,16 @@
                                 {{ __('Panel admin') }}
                             </x-nav-link>
                         </div>
+                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <x-nav-link :href="route('user_panel')" :active="request()->routeIs('user_panel')">
+                                {{ __('Panel usuario') }}
+                            </x-nav-link>
+                        </div>
                         @endif
                     @elseif (Auth::user()->role == 2)
-                        @if (Request::path() !== 'dashboard')
+                        @if (Request::path() !== 'user_panel')
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                                <x-nav-link :href="route('user_panel')" :active="request()->routeIs('user_panel')">
                                     {{ __('Panel') }}
                                 </x-nav-link>
                             </div>
@@ -64,7 +69,7 @@
 
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-50 bg-slate-900 hover:text-white focus:outline-none transition ease-in-out duration-150">
-                            <div>{{ Auth::user()->name }}</div>
+                            <div>{{ Auth::user()->firstName }} {{ Auth::user()->lastName }}</div>
 
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -117,13 +122,9 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-        @auth
-            @if (Auth::user()->role == 1)
-                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                    {{ __('Dashboard') }}
-                </x-responsive-nav-link>
-            @endif
-        @endauth
+            <x-responsive-nav-link  :href="route('welcome')" :active="request()->routeIs('welcome')">
+                {{ __('Inicio') }}
+            </x-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('company')" :active="request()->routeIs('company')">
@@ -140,12 +141,28 @@
                 {{ __('Contacts') }}
             </x-responsive-nav-link>
         </div>
+        <div class="pt-2 pb-3 space-y-1">
+        @auth
+            @if (Auth::user()->role == 1)
+                <x-responsive-nav-link :href="route('admin_panel')" :active="request()->routeIs('admin_panel')">
+                    {{ __('Admin panel') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('user_panel')" :active="request()->routeIs('user_panel')">
+                    {{ __('User panel') }}
+                </x-responsive-nav-link>
+            @elseif (Auth::user()->role == 2)
+                <x-responsive-nav-link :href="route('user_panel')" :active="request()->routeIs('user_panel')">
+                    {{ __('User panel') }}
+                </x-responsive-nav-link>
+            @endif
+        @endauth
+        </div>
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             @auth
 
             <div class="px-4">
-                <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
+                <div class="font-medium text-base text-gray-800">{{ Auth::user()->firstName }} {{ Auth::user()->lastName }}</div>
                 <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
             </div>
             @endauth

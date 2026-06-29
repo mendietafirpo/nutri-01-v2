@@ -26,7 +26,7 @@
             <!-- Formulario de contacto -->
             <div class="contact-form">
                 <h3 class="text-xl font-semibold text-blue-500 mb-4">Envíanos tu consulta</h3>
-                <form action="{{ route('contact.send') }}" method="POST" class="space-y-4">
+                <form action="{{ route('contact.store') }}" method="POST" class="space-y-2">
                     @csrf
                     <div>
                         <label for="name" class="block text-sm font-semibold text-gray-700">Nombre:</label>
@@ -35,6 +35,18 @@
                     <div>
                         <label for="email" class="block text-sm font-semibold text-gray-700">Email:</label>
                         <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                    </div>
+                    <div>
+                        <label for="cellPhone" class="block text-sm font-semibold text-gray-700">Teléfono:</label>
+                        <input type="cellPhone" id="cellPhone" name="cellPhone" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                    </div>
+                    <div>
+                        <label for="city" class="block text-sm font-semibold text-gray-700">Ciudad:</label>
+                        <input type="city" id="city" name="city" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                    </div>
+                    <div>
+                        <label for="country" class="block text-sm font-semibold text-gray-700">País:</label>
+                        <input type="country" id="country" name="country" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none">
                     </div>
                     <div>
                         <label for="message" class="block text-sm font-semibold text-gray-700">Mensaje:</label>

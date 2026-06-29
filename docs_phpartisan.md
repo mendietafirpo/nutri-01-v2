@@ -49,3 +49,31 @@
 >> chmod -R 777 storage
 
 >> netstat -ano | findstr :3306
+
+
+# ACTUALIZACION PRODUCCIÓN
+
+# computadora local, ejecuta 
+>> composer install --no-dev --optimize-autoloader 
+ó composer update --ignore-platform-reqs (sí hay problemas de compatibilidad) 
+# (esto limpiará tu vendor local de cosas innecesarias para producción).
+
+# 1. Limpiar todo lo viejo
+php artisan optimize:clear
+
+# 2. Generar el nuevo caché (Esto crea archivos nuevos específicos para el servidor)
+php artisan optimize
+
+# 3. Cachear las vistas
+php artisan view:cache
+
+# 4. (Opcional) Reiniciar el gestor de procesos si usas colas (queues)
+php artisan queue:restart
+
+# Código fuente: Todos los archivos de las carpetas app/, config/, database/, resources/, routes/, y bootstrap/app.php.
+
+>> composer.json y composer.lock: Es vital subirlos para que el servidor sepa exactamente qué versiones de paquetes instalar.
+
+>> package.json y vite.config.js: Necesarios para compilar tus assets.
+
+>> public/build/: La carpeta completa que generaste con npm run build.
