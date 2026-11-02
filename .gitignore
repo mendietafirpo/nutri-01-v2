@@ -21,3 +21,6 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+docs_development.md
+docs_phpartisan.md
+docs_routes.md

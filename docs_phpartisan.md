@@ -55,7 +55,17 @@
 
 # computadora local, ejecuta 
 >> composer install --no-dev --optimize-autoloader 
-ó composer update --ignore-platform-reqs (sí hay problemas de compatibilidad) 
+ó (sí hay problemas de compatibilidad) 
+>> composer update --ignore-platform-reqs 
+>> composer audit
+>> composer show laravel/framework
+en algunos casos:
+>> composer clear-cache
+>> composer update laravel/framework --with-dependencies --ignore-platform-reqs
+para cambiar version laravel, en composer.json "require": {
+    "laravel/framework": "^12.68",
+    ...
+}
 # (esto limpiará tu vendor local de cosas innecesarias para producción).
 
 # 1. Limpiar todo lo viejo

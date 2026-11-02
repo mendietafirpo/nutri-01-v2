@@ -120,8 +120,4 @@ class AdminBoardController extends Controller
         return view('admin/admin_panel', $data);
 
     }
-
-    
-
-    
 }
